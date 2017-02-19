@@ -1,0 +1,27 @@
+body { 
+  background: url("../images/sunset.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	text-align: center;
+	font-family: Helvetica;
+	font-size: 2em;
+	color: white;
+}
+
+.sunset {
+	margin: 0 auto;            
+	width: 70%;                          
+	clear: both;         /* no floating on left or right at onset */
+/*	background-image: url("../images/sunset.jpg");            */
+}
+
+#letterIn {
+	font-family: sans-serif;
+	font-size: 4em;
+}
+
+/* #incorrectLtrs, #guessesRemaining, #numWins, #numLosses {
+	color: white;
+}  */
