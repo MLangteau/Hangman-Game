@@ -8,6 +8,7 @@ body {
 	font-family: Helvetica;
 	font-size: 2em;
 	color: white;
+	clear: both;
 }
 
 .sunset {
@@ -21,7 +22,9 @@ body {
 	font-family: sans-serif;
 	font-size: 4em;
 }
-
-/* #incorrectLtrs, #guessesRemaining, #numWins, #numLosses {
-	color: white;
-}  */
+.my-panel {
+	display:block;  
+	background-color: white;     
+	opacity: .6;
+	color: black;
+}

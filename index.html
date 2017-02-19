@@ -15,44 +15,37 @@
 </head>
 <body>
   <div class="sunset">
-  <div class="container">
+ <!-- <div class="container">    -->
     <div>
-      <h1>Hangman<br></h1>
-        <p>Guess words about the human body (You only have 9 total guesses)</p>
+    <div class="my-panel">
+      <h1>Hangman</h1>
+        <p>Guess words about the environment (You only have 9 total guesses)</p>
     </div>
   </div>
 
-  <div class="guess-panel">
+  <div class="my-panel guess-panel">
     <div>
       <h3>Word To Guess</h3>
     </div>
-    <div class="letter-panel">
+    <div class="my-panel letter-panel">
       <h2 id="letterIn">_ _ _ _ _ _ _</h2>
     </div>
   </div>
 
   <div class="my-panel">
-    <div>
-      Incorrect Letters Guessed<span id="incorrectLtrs"></span>
-    </div>
+      Incorrect Letters Guessed: <span id="incorrectLtrs"></span>
   </div>
 
   <div class="my-panel">
-    <div>
       Guesses Remaining: <span id="guessesRemaining"></span>
-    </div>
   </div>
 
   <div class="my-panel">
-    <div>
       Number of Wins: <span id="numWins">0</span>
-    </div>
   </div>
 
   <div class="my-panel">
-    <div>
       Number of Losses: <span id="numLosses">0</span>
-    </div>
   </div>
   </div>
    <!--     BOTTOM OF FILE --> 
@@ -132,10 +125,10 @@
   //  .join gets rid of the commas that we see above in Guess Bank
   //  Also, push items to the screen.
   document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
-  document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
-  document.getElementById("numWins").innerHTML = numWins;
-  document.getElementById("numLosses").innerHTML = numLosses;
-  document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs;
+// 4:45 document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
+ // 4:45 document.getElementById("numWins").innerHTML = numWins;
+ // 4:45 document.getElementById("numLosses").innerHTML = numLosses;
+ // 4:45 document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs;
 
   } // end of startNewGame function 
 
@@ -158,7 +151,6 @@
         console.log("assigning it to the i: " + i + " position");
           // assign it to a specific position in the array
 //         document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
-
                 correctLtrsAndUndersc[i] = letter;
         }; // end of if
       }; // end of for
@@ -166,10 +158,13 @@
     } // end of if (matchedUp)
     
     else {      
-      //  Each match won't match every letter, just one
       console.log("qualify " + qualify) ;
       if (qualify) {
-        guessesRemaining--;
+          incorrectLtrs.push(letter);
+          guessesRemaining--;
+
+ /*       
+     //   guessesRemaining--;
       }
       console.log(" guessesRemaining: " + guessesRemaining);
       
@@ -178,14 +173,18 @@
       for (var i=0; i < incorrectLtrs.length; i++) {
         if (incorrectLtrs[i] === letter) {
           console.log("already pushed");
+          i = incorrectLtrs.length;  // get out of for loop
         }
         else {
           // pushes it to the array
           console.log("push to array");
           incorrectLtrs.push(letter);
-          document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs;
+            guessesRemaining--;
+          i = incorrectLtrs.length;  // get out of for loop
+      document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs; 
+  
         }   // end of else
-          
+   */
       }; // end of for
 
       console.log("Does not match incorrectLtrs: " + incorrectLtrs);
@@ -203,7 +202,9 @@
 
     document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
     document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
+
     document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs.join(" ");
+    
     console.log ("Compare A: " + randomWord + " to B: " + correctLtrsAndUndersc);
 
     var mergedCorrectLtrs = correctLtrsAndUndersc.join("");
@@ -250,7 +251,7 @@
 
 // get your first input from user
   document.onkeyup = function() {
-//    var userGuess = String.fromCharCode(event.keycode).toLowerCase();
+//    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
     var userGuess = event.key.toLowerCase();
 
@@ -275,7 +276,7 @@
       WinOrLoseGame();
     }
     else {
-      console.log("NOT a letter");
+      alert("NOT a letter");
     }
 
   };
