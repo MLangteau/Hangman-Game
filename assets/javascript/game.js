@@ -3,7 +3,8 @@ $(document).ready(function() {
   var guessesRemaining = 0;
   var numWins = 0;
   var numLosses = 0;
-  var WordsArray = ["larynx", "leg", "nose", "ear", "head", "foot", "shoulder"];
+//  var WordsArray = ["larynx", "leg", "nose", "ear", "head", "foot", "shoulder"];
+  var WordsArray = ["sun","air","moon","trees","oxygen","polution","dirt","water"];
   var randomWord = "";      // randomly chosen word
   var anyLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","n", "o","p","q","r","s","t","u","v","w","x","y","z"];
   var lettersInWord = [];     // determine what letters are actually in the word
@@ -47,26 +48,22 @@ $(document).ready(function() {
 
   console.log(" A RESET: RemGuess: " + guessesRemaining + " correctLtrsAndUndersc " + correctLtrsAndUndersc +  " incorrectLtrs " + incorrectLtrs);
 
-
  // Generate a ramdom word from an array of words (and store it in a variable)
+  randomWord = WordsArray[Math.floor(Math.random() * WordsArray.length)];
+  console.log(" we have this randomWord" + randomWord);
+  console.log("randomWord.length: " + randomWord.length + " should equal the following");
 
-    randomWord = WordsArray[Math.floor(Math.random() * WordsArray.length)];
-    console.log(" we have this randomWord" + randomWord);
+  lettersInWord = randomWord.split("");
+  console.log(lettersInWord);
 
-
-    console.log("randomWord.length: " + randomWord.length + " should equal the following");
-
-    lettersInWord = randomWord.split("");
-    console.log(lettersInWord);
-
-    numberOfSpacesNeeded = lettersInWord.length;
+  numberOfSpacesNeeded = lettersInWord.length;
   console.log(" numberOfSpacesNeeded: " + numberOfSpacesNeeded);
 
 // each space has an underscore for the letters to guess   numberOfSpacesNeeded
   for (var i=0; i < numberOfSpacesNeeded; i++) {
     correctLtrsAndUndersc.push("_");
     console.log(" Each Underscore " + correctLtrsAndUndersc[i] + " " + i);
-    };   //  end of for loop
+  };   //  end of for loop
 
 	console.log(" Guess bank " + correctLtrsAndUndersc);
 
@@ -90,16 +87,15 @@ $(document).ready(function() {
       if (randomWord[i] == letter) {
           matchedUp = true;
           console.log("Letter matched: " + letter);
-      };
-    };
+      }; // end of if
+    };  // end of for
 
     if (matchedUp) {
       for (var i=0; i < randomWord.length; i++) {
         if (randomWord[i] === letter) {
         console.log("assigning it to the i: " + i + " position");
           // assign it to a specific position in the array
- //        document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
-                correctLtrsAndUndersc[i] = letter;
+                 correctLtrsAndUndersc[i] = letter;
         }; // end of if
       }; // end of for
       console.log("end of matchedUp for and if");
@@ -107,71 +103,40 @@ $(document).ready(function() {
     
     else {    
       console.log("qualifyAsLetter " + qualifyAsLetter) ;
-      if (qualifyAsLetter) {
-     //     incorrectLtrs.push(letter);			a must if not below
-     //     guessesRemaining--;                  a must if not below
-      
-      }
       console.log("q5q guessesRemaining: " + guessesRemaining);
-      
+     
       // Don't automatically push to incorrect list (only if it is not already in there)
 
-    if (incorrectLtrs.length === 0) 
-    {
-    	incorrectLtrs.push(letter);     
-    	console.log("Pushed the heck out of it")                  
-          guessesRemaining--;						
-    }
-    else 
-    {
-	    console.log("Before FOR Loop Length:" + incorrectLtrs.length + " ltr: " + letter);
-		var alreadyguessed = false;
-	    for (var index=0; index < incorrectLtrs.length; index++) {
-			if (incorrectLtrs[index] === letter) {
-				alreadyguessed = true;
-				index = incorrectLtrs.length; 
-			}
-		};
+      if (incorrectLtrs.length === 0) {
+    	   incorrectLtrs.push(letter);     
+    	   console.log("Pushed the heck out of it")                  
+         guessesRemaining--;						
+      }
+      else {
+	      console.log("Before FOR Loop Length:" + incorrectLtrs.length + " ltr: " + letter);
+		    var alreadyguessed = false;
+        for (var index=0; index < incorrectLtrs.length; index++) {
+			     if (incorrectLtrs[index] === letter) {
+				      alreadyguessed = true;
+				      index = incorrectLtrs.length; 
+			     }  // end of if
+		    };  // end of for
 		
-		console.log("alreadyguessed: " + alreadyguessed);
+		    console.log("alreadyguessed: " + alreadyguessed);
 
-		if (!alreadyguessed) {          //  If it has not been guessed, then deduct and push
-			incorrectLtrs.push(letter);
-	        guessesRemaining--;						
-		}
-				
-/*			
-		    if (incorrectLtrs[index] === letter) {      // if it matches any already there
-	        	console.log("Already pushed and maximize index: " + index);
-	          	console.log("F1-IF ltr to ltr : " + incorrectLtrs[index] + " " + letter);
-	          	index = incorrectLtrs.length;  // get out of for loop
-	        }
-	        else {
-	          	// pushes it to the array
-	          	console.log("F2-ELSE: " + incorrectLtrs[index] + " " + letter);
-	          	console.log("push to array");
-	          	incorrectLtrs.push(letter);                        	///  A MUST  !!
-	          	guessesRemaining--;									///  A MUST  !!
-	          	index = incorrectLtrs.length;  // get out of for loop
-	          	console.log("Push and maximize index: " + index);
-	//      	  document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs; 
-	        }   // end of else
-*/	  
-	     // } // end of for
-
-	      console.log("Does not match incorrectLtrs: " + incorrectLtrs);
-	      
-	    }  // end of else
-
-	      console.log("correctLtrsAndUndersc: " + correctLtrsAndUndersc);
-	   }
-  }   //   Ends compareLetters function;
+		    if (!alreadyguessed) {          //  If it has not been guessed, then deduct and push
+	         incorrectLtrs.push(letter);
+	         guessesRemaining--;						
+		    }  // end of if
+      }  // end of else tied with this if (incorrectLtrs.length === 0) 
+	  }  // end of else tied with (matchedUp)
+  }   // end of compareLetters function;
 
 
   function WinOrLoseGame() {
     console.log(" numWins: " + numWins + " numLosses: " + numLosses + " gsuessesRemaining: " + guessesRemaining);
 
-    // Fill screen with counts
+    // Screen interactions
     document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
     document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
     document.getElementById("incorrectLtrs").innerHTML = incorrectLtrs.join(" ");
@@ -180,8 +145,7 @@ $(document).ready(function() {
     var mergedCorrectLtrs = correctLtrsAndUndersc.join("");
     console.log("mergedCorrectLtrs: " + mergedCorrectLtrs);
 
-  // update win and loss counters 
-
+  // win and loss counters below
     if (randomWord == mergedCorrectLtrs) {
     numWins++;
 
@@ -204,9 +168,8 @@ $(document).ready(function() {
       document.getElementById("numLosses").innerHTML = numLosses;
 
       startNewGame();
-
-    }
-  };
+    }  // end of else if (guessesRemaining == 0)
+  };  // end of function WinOrLoseGame
 
 //  ******************      AND SO IT BEGINS     *******************
 
@@ -215,20 +178,12 @@ $(document).ready(function() {
 
 // get your first input from user
   document.onkeyup = function() {
-//    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
     var userGuess = event.key.toLowerCase();
-
-//    console.log("event key: " + event.key);
-//    console.log("event: ", event);  // comma does not concatenate 
-
     console.log("userGuess after toLowerCase: " + userGuess);
 
 // validating if the input is a valid letter
-    
 
     qualifyAsLetter = true;
-
     console.log("This is the daggone letter " + userGuess);
     allLetter(userGuess, qualifyAsLetter);
 
@@ -241,8 +196,8 @@ $(document).ready(function() {
     }
     else {
       alert("NOT a letter");
-    }
 
-  };
+    } // end of else tied to if (qualifyAsLetter)
+  };  // end of document.onkeyup function
 
 });  //End of document ready
