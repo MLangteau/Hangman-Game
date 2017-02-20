@@ -4,9 +4,9 @@ $(document).ready(function() {
   var numWins = 0;
   var numLosses = 0;
 //  var WordsArray = ["larynx", "leg", "nose", "ear", "head", "foot", "shoulder"];
-  var WordsArray = ["sun","air","moon","trees","oxygen","polution","dirt","water"];
+  var WordsArray = ["air","aquifer","atmosphere","biodegradable","biodiversity","biohazard","biosphere","blackwater","condensation","contaminate","conservation","climate","cloud","deforestation","dirt","ecology","ecoterrorism","emissions","environment","evaporation","hurricane","green","greenhouse","landfill","meteorology","moon","monsoon","nature","oxygen","ozone","polution","preservation","rain","reclamation","recycling","reforestation","renewable","river","sanctuary","smog","sun","","sustainability","toxicity","tree","tropical","tsunami","typhoon","water"];
   var randomWord = "";      // randomly chosen word
-  var anyLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","n", "o","p","q","r","s","t","u","v","w","x","y","z"];
+  var anyLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   var lettersInWord = [];     // determine what letters are actually in the word
   var numOfLtrsInWord = 0;    // calculate the # of letters in each randonWord
   var correctLtrsAndUndersc = [];     // correctly guessed letters and/or underscores
@@ -149,7 +149,7 @@ $(document).ready(function() {
     if (randomWord == mergedCorrectLtrs) {
     numWins++;
 
-    alert("You Won this game!!");
+    alert("You Won this round!!  As you guessed, the word was: " + randomWord + "!  Press <Enter> to play a new round");
 
     document.getElementById("numWins").innerHTML = numWins;
     document.getElementById("letterIn").innerHTML = correctLtrsAndUndersc.join(" ");
@@ -163,7 +163,7 @@ $(document).ready(function() {
 
     else if (guessesRemaining == 0) {
       numLosses++;
-      alert("You have lost this game.");
+      alert("So sorry!  You have lost this round.  The word was: " + randomWord + "!  Press <Enter> to play a new round");
 
       document.getElementById("numLosses").innerHTML = numLosses;
 
@@ -195,7 +195,7 @@ $(document).ready(function() {
       WinOrLoseGame();
     }
     else {
-      alert("NOT a letter");
+      alert("NOT a letter; please try again.");
 
     } // end of else tied to if (qualifyAsLetter)
   };  // end of document.onkeyup function
